@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory Management</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="container">
+    <h1>Inventory Management</h1>
+
+    <section class="card">
+      <h2>เพิ่ม/แก้ไขสินค้า</h2>
+      <form id="product-form">
+        <input type="hidden" id="product-id" />
+        <input type="hidden" id="product-image-path" />
+        <div class="grid-2">
+          <div class="field">
+            <label for="product-name">ชื่อสินค้า</label>
+            <input id="product-name" type="text" required placeholder="เช่น ดินสอ 2B" />
+          </div>
+          <div class="field">
+            <label for="product-quantity">จำนวนคงเหลือ</label>
+            <input id="product-quantity" type="number" min="0" step="1" required placeholder="เช่น 12" />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="product-price">ราคา (บาท)</label>
+            <input id="product-price" type="number" min="0" step="0.01" required placeholder="เช่น 19.50" />
+          </div>
+          <div class="field">
+            <label for="product-image">รูปภาพสินค้า</label>
+            <input id="product-image" type="file" accept="image/*" />
+            <small class="hint">อัปโหลดใหม่เพื่อแทนที่รูปเดิม (ถ้ามี)</small>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="submit-button" type="submit">เพิ่มสินค้า</button>
+          <button id="cancel-edit" type="button" class="secondary" hidden>ยกเลิก</button>
+        </div>
+      </form>
+    </section>
+ 
+    <section class="card">
+      <div class="header-row">
+        <h2>รายการสินค้า</h2>
+        <div class="actions header-tools">
+          <input id="search-input" type="text" placeholder="ค้นหาชื่อสินค้า..." aria-label="ค้นหาชื่อสินค้า" />
+          <button id="export-csv" class="secondary">Export CSV</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table class="table" aria-label="Products table">
+          <thead>
+            <tr>
+              <th>รูป</th>
+              <th>ชื่อสินค้า</th>
+              <th>คงเหลือ</th>
+              <th>ราคา (บาท)</th>
+              <th>การทำงาน</th>
+            </tr>
+          </thead>
+          <tbody id="products-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="firebase-config.js"></script>
+  <script type="module" src="app.js"></script>
+  
+</body>
+</html>
+
+
